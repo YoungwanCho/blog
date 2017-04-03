@@ -1,0 +1,35 @@
+<div id='category' class='G1s'>
+   <li class='categoryl2'>
+      <a id='category-unity3d' href='/search/label/Unity3D?max-results=1'>Unity3D</a></li>
+    <li class='categoryl2'>
+      <a id='category-c#' href='/search/label/C#?max-results=1'>C#</a></li>
+    <li class='categoryl2'>
+      <a id='category-html' href='/search/label/HTML?max-results=1'>HTML</a></li>
+    <li class='categoryl2'>
+      <a id='category-books' href='/search/label/블로그?max-results=1'>Books</a></li>
+ 
+<script>
+ function Category(id, label, name){
+  this.a = document.getElementById(id);
+  this.label = label;
+
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.charset = 'utf-8';
+  script.src = home + '/feeds/posts/summary/-/' + label + '?max-results=1&alt=json-in-script&callback=' + name +'.pong';
+  document.getElementsByTagName('head')[0].appendChild(script);
+  
+  this.pong = function(cfeed){
+   var cnt = cfeed.feed.openSearch$totalResults.$t;
+   this.a.innerHTML = this.a.innerHTML + '(' + cnt + ')';
+  };
+ }
+
+var home = 'http://developer119korea.blogspot.kr/';
+
+var unity3d = new Category('category-unity3d','Unity3d','Unity3d'); 
+var c# = new Category('category-c#','C#','C#');
+var html = new Category('category-html','HTML','HTML');
+var books = new Category('category-books','Books','Books');
+
+</script></div>
